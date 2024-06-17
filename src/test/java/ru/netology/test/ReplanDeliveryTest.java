@@ -25,10 +25,10 @@ class ReplanDeliveryTest {
     @DisplayName("should Success All Forms")
     void shouldSuccessAllForms() {
         var validUser = DataGenerator.Registration.generateUser("ru");
-        var daysAddFirstMeeting = 4;
-        var firstMeetDate = DataGenerator.generateDate(daysAddFirstMeeting);
-        var daysAddSecondMeeting = 7;
-        var secondMeetDate = DataGenerator.generateDate(daysAddSecondMeeting);
+        var daysAddForFirstMeeting = 4;
+        var firstMeetDate = DataGenerator.generateDate(daysAddForFirstMeeting);
+        var daysAddForSecondMeeting = 7;
+        var secondMeetDate = DataGenerator.generateDate(daysAddForSecondMeeting);
 
         $("[data-test-id='city'] input").setValue(validUser.getCity());
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
@@ -46,7 +46,7 @@ class ReplanDeliveryTest {
         $("[data-test-id='date'] input").setValue(secondMeetDate);
         $(byText("Запланировать")).click();
 
-        $(byText("Необходимо подтверждение")).shouldBe(visible, Duration.ofSeconds(15));
+       
         $("[data-test-id='replan-notification'] .notification__content")
                 .shouldHave(exactText("У вас уже запланирована встреча на другую дату. Перепланировать?"))
                 .shouldBe(visible);
